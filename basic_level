@@ -1,0 +1,75 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+struct stek
+{
+    string surname;
+    int average;
+    stek* next;
+};
+
+int main()
+{
+    setlocale(0, "ru");
+    int a, count=0;
+    cout << "Введите количество студентов: ";
+    cin >> a;
+    stek *top, *p, *first;
+    top = new stek;
+    top->next = NULL;
+    cout << "Input surname student: ";
+    cin.ignore(std::cin.rdbuf()->in_avail());
+    getline(cin, top->surname, '\n');
+    cout << "Input mark: ";
+    cin >> top->average;
+    first = top;
+    cout << endl;
+    do
+    {
+        if (a == 1)
+            break;
+        p = new stek;
+        p->next = NULL;
+        cout << "Input surname student: ";
+        cin.ignore(std::cin.rdbuf()->in_avail());
+        getline(cin, p->surname, '\n');
+        cout << "Input mark:";
+        cin >> p->average;
+        top->next = p;
+        top = p;
+        count++;
+        cout << endl;
+
+    } while (--a != count );
+    int answer;
+    cout << "Добавить информацию о новом студенте?(1 - да/нет - 0)" << endl;
+    cin >> answer;
+    cout << endl;
+    if (answer == 1)
+    {
+        p = new stek;
+        p->next = NULL;
+        cout << "Input surname student: ";
+        cin.ignore(std::cin.rdbuf()->in_avail());
+        getline(cin, p->surname, '\n');
+        cout << "Input mark:";
+        cin >> p->average;
+        top->next = p;
+        top = p;
+        cout << endl;
+    }
+    top = first;
+    do
+        {
+            cout << "Surname: " << top->surname << " Average mark " << top->average << endl;
+            top = top->next;
+
+        } while (top);
+   
+    
+
+
+ 
+}
